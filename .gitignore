@@ -1,3 +1,7 @@
+# Project
+.token
+telebot/
+
 # Prerequisites
 *.d
 
