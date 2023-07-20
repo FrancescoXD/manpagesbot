@@ -1,13 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-
-#include <telebot.h>
-
-#define MSG_SIZE 1024
-#define TOKEN_SIZE 1024
-#define SIZE_OF_ARRAY(array) (sizeof(array) / sizeof(array[0]))
+#include "manpagesbot.h"
 
 int main(void) {
 	fprintf(stdout, "[info] Starting Telegram Bot...\n");
@@ -50,7 +41,8 @@ int main(void) {
 
 	while (1) {
 		telebot_update_t *updates;
-		ret = telebot_get_updates(handler, offset, 20, 0, update_types, 0, &updates, &count);
+		ret = telebot_get_updates(handler, offset, 20, 0, update_types, 0,
+								  &updates, &count);
 		if (ret != TELEBOT_ERROR_NONE) {
 			continue;
 		}
@@ -58,15 +50,9 @@ int main(void) {
 		for (index = 0; index < count; ++index) {
 			message = updates[index].message;
 			if (message.text) {
-				char str[MSG_SIZE];
-				if (strstr(message.text, "/start")) {
-					snprintf(str, MSG_SIZE, "Hello @%s!", message.from->username);
-					ret = telebot_send_message(handler, message.chat->id, str, "HTML", 1, 0, message.message_id, "");
-				} else {
-					snprintf(str, MSG_SIZE, "%s", message.text);
-					ret = telebot_send_message(handler, message.chat->id, str, "HTML", 1, 0, message.message_id, "");
-				}
-
+				char *str = handle_message(&message);
+				ret =
+					telebot_send_message(handler, message.chat->id, str, "HTML", 1, 0, message.message_id, "");
 				if (ret != TELEBOT_ERROR_NONE) {
 					fprintf(stderr, "[error] Unable to send message!\n");
 				}

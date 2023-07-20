@@ -1,6 +1,9 @@
 # Project
 .token
 telebot/
+.vscode/
+# clangd stuff
+.cache/
 
 # Prerequisites
 *.d
