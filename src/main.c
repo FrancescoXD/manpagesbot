@@ -54,7 +54,7 @@ int main(void) {
 				ret =
 					telebot_send_message(handler, message.chat->id, str, "HTML", 1, 0, message.message_id, "");
 				if (ret != TELEBOT_ERROR_NONE) {
-					fprintf(stderr, "[error] Unable to send message!\n");
+					fprintf(stderr, "[error] Unable to send message! ERRCODE: %d\n", ret);
 				}
 			}
 			offset = updates[index].update_id + 1;

@@ -2,6 +2,7 @@
 A Telegram bot written in C
 
 ## Requirements
+- [ezmanpages](https://github.com/FrancescoXD/ezmanpages)
 - libcurl
 - json-c
 - meson
@@ -34,4 +35,4 @@ It will produce `manpagesbot`, which is the executable of the bot. To start it c
 
 ### TODO & Bugs
 - Sometimes you could receive `[ERROR][telebot_core_curl_perform:137]Wrong HTTP response received, response: 400` and I don't know why...
-- I need to write a Man pages parser...
+- I think the bug is caused by the telebot lib that doesn't escape the text 

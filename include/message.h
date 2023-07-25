@@ -6,15 +6,14 @@
 #include <stdlib.h>
 
 #include <telebot.h>
+#include <ezmanpages/ezmanpages.h>
 
-#define MSG_SIZE 1024
+#define MSG_SIZE 800
 #define MAN_LINE 78
 #define MAN_CMD 512
 #define MAN_ARG_SIZE 128
 
 char *handle_message(telebot_message_t *message);
-char *get_manpage(char *cmd);
-int test_man_cmd(const char *arg);
-char *remove_multiple_newlines(char *text);
+void get_manpage(char *text, char *res);
 
 #endif
