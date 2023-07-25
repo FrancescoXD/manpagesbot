@@ -22,16 +22,31 @@ void get_manpage(char *text, char *res) {
 	char *name = strtok(text, " ");
 	name = strtok(NULL, " ");
 
-	ret = ezmanpages_init(&parser, name, 3, "DESCRIPTION");
+	ret = ezmanpages_init(&parser, name, 3, "SYNOPSIS");
 	if (ret != E_PARSER_SUCCESS) {
-		strncpy(res, "Error while init ezmanpages!", MSG_SIZE);
+		strncpy(res, "Error while init ezmanpages!\n", MSG_SIZE);
 	}
 
-	ret = ezmanpages_parse(parser, res);
+	ret = ezmanpages_parse(parser, res, MSG_SIZE);
 	if (ret != E_PARSER_SUCCESS) {
-		strncpy(res, "Error while parsing ezmanpages!", MSG_SIZE);
+		strncpy(res, "Error while parsing ezmanpages!\n", MSG_SIZE);
 	}
 
-	fprintf(stdout, "%s", res);
-	fprintf(stdout, "len: %zu\n", strlen(res));
+	//fprintf(stdout, "%s", res);
+	format_text(res);
+	//fprintf(stdout, "%s", res);
+	//fprintf(stdout, "len: %zu\n", strlen(res));
+}
+
+void format_text(char *text) {
+	size_t len = strlen(text);
+	for (size_t i = 0; i < len; ++i) {
+		if (text[i] == '<') {
+			text[i] = ' ';
+			//text[i] = '&lt';
+		} else if (text[i] == '>') {
+			text[i] = ' ';
+			//text[i] = '&gt';
+		}
+	}
 }

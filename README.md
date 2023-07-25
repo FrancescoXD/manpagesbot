@@ -34,5 +34,6 @@ $ ninja
 It will produce `manpagesbot`, which is the executable of the bot. To start it create a `.token` file with the token inside (get it from botfather on telegram!).
 
 ### TODO & Bugs
+- Add the `/man NAME PAGE SECTION` command
 - Sometimes you could receive `[ERROR][telebot_core_curl_perform:137]Wrong HTTP response received, response: 400` and I don't know why...
-- I think the bug is caused by the telebot lib that doesn't escape the text 
+- I think the bug is caused by the telebot lib that doesn't escape the text (chars that crashes the bot: '<' and '>')

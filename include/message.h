@@ -15,5 +15,6 @@
 
 char *handle_message(telebot_message_t *message);
 void get_manpage(char *text, char *res);
+void format_text(char *text);
 
 #endif
